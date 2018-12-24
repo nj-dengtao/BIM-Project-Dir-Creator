@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Root");
             this.lab_ToolName = new System.Windows.Forms.Label();
             this.tre_Driectroy = new System.Windows.Forms.TreeView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.but_AddChildNode = new System.Windows.Forms.Button();
+            this.but_AddParentNode = new System.Windows.Forms.Button();
+            this.but_DeleteNode = new System.Windows.Forms.Button();
             this.rad_FromTemplate = new System.Windows.Forms.RadioButton();
             this.rad_Manual = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -55,45 +54,44 @@
             // 
             // tre_Driectroy
             // 
-            this.tre_Driectroy.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tre_Driectroy.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tre_Driectroy.Location = new System.Drawing.Point(12, 57);
             this.tre_Driectroy.Name = "tre_Driectroy";
-            treeNode2.Name = "节点0";
-            treeNode2.Text = "Root";
-            this.tre_Driectroy.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
             this.tre_Driectroy.Size = new System.Drawing.Size(311, 529);
             this.tre_Driectroy.TabIndex = 1;
+            this.tre_Driectroy.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tre_Driectroy_NodeMouseClick);
+            this.tre_Driectroy.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tre_Driectroy_NodeMouseDoubleClick);
+            this.tre_Driectroy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tre_Driectroy_MouseClick);
             // 
-            // button1
+            // but_AddChildNode
             // 
-            this.button1.Location = new System.Drawing.Point(339, 332);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Add Child Node";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.but_AddChildNode.Location = new System.Drawing.Point(339, 332);
+            this.but_AddChildNode.Name = "but_AddChildNode";
+            this.but_AddChildNode.Size = new System.Drawing.Size(100, 23);
+            this.but_AddChildNode.TabIndex = 2;
+            this.but_AddChildNode.Text = "Add Child Node";
+            this.but_AddChildNode.UseVisualStyleBackColor = true;
+            this.but_AddChildNode.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // but_AddParentNode
             // 
-            this.button2.Location = new System.Drawing.Point(339, 287);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Add Parent Node";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.but_AddParentNode.Location = new System.Drawing.Point(339, 287);
+            this.but_AddParentNode.Name = "but_AddParentNode";
+            this.but_AddParentNode.Size = new System.Drawing.Size(100, 23);
+            this.but_AddParentNode.TabIndex = 3;
+            this.but_AddParentNode.Text = "Add Parent Node";
+            this.but_AddParentNode.UseVisualStyleBackColor = true;
+            this.but_AddParentNode.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // but_DeleteNode
             // 
-            this.button3.Location = new System.Drawing.Point(339, 384);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Delete Node";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.but_DeleteNode.Location = new System.Drawing.Point(339, 384);
+            this.but_DeleteNode.Name = "but_DeleteNode";
+            this.but_DeleteNode.Size = new System.Drawing.Size(100, 23);
+            this.but_DeleteNode.TabIndex = 4;
+            this.but_DeleteNode.Text = "Delete Node";
+            this.but_DeleteNode.UseVisualStyleBackColor = true;
+            this.but_DeleteNode.Click += new System.EventHandler(this.button3_Click);
             // 
             // rad_FromTemplate
             // 
@@ -155,7 +153,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(339, 175);
+            this.button4.Location = new System.Drawing.Point(339, 176);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
@@ -170,9 +168,9 @@
             this.ClientSize = new System.Drawing.Size(800, 598);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.but_DeleteNode);
+            this.Controls.Add(this.but_AddParentNode);
+            this.Controls.Add(this.but_AddChildNode);
             this.Controls.Add(this.tre_Driectroy);
             this.Controls.Add(this.lab_ToolName);
             this.MaximizeBox = false;
@@ -191,9 +189,9 @@
 
         private System.Windows.Forms.Label lab_ToolName;
         private System.Windows.Forms.TreeView tre_Driectroy;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button but_AddChildNode;
+        private System.Windows.Forms.Button but_AddParentNode;
+        private System.Windows.Forms.Button but_DeleteNode;
         private System.Windows.Forms.RadioButton rad_FromTemplate;
         private System.Windows.Forms.RadioButton rad_Manual;
         private System.Windows.Forms.GroupBox groupBox1;
