@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lab_ToolName = new System.Windows.Forms.Label();
             this.tre_Driectroy = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.but_AddChildNode = new System.Windows.Forms.Button();
             this.but_AddParentNode = new System.Windows.Forms.Button();
             this.but_DeleteNode = new System.Windows.Forms.Button();
@@ -44,8 +45,10 @@
             this.lab_ProjectName = new System.Windows.Forms.Label();
             this.lab_ProjectPath = new System.Windows.Forms.Label();
             this.but_CreateDirectories = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.lab_Attation = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lab_ToolName
@@ -73,9 +76,16 @@
             this.tre_Driectroy.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tre_Driectroy_NodeMouseDoubleClick);
             this.tre_Driectroy.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tre_Driectroy_MouseClick);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Floder.png");
+            // 
             // but_AddChildNode
             // 
-            this.but_AddChildNode.Location = new System.Drawing.Point(339, 332);
+            this.but_AddChildNode.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but_AddChildNode.Location = new System.Drawing.Point(6, 80);
             this.but_AddChildNode.Name = "but_AddChildNode";
             this.but_AddChildNode.Size = new System.Drawing.Size(100, 23);
             this.but_AddChildNode.TabIndex = 2;
@@ -85,7 +95,8 @@
             // 
             // but_AddParentNode
             // 
-            this.but_AddParentNode.Location = new System.Drawing.Point(339, 287);
+            this.but_AddParentNode.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but_AddParentNode.Location = new System.Drawing.Point(6, 39);
             this.but_AddParentNode.Name = "but_AddParentNode";
             this.but_AddParentNode.Size = new System.Drawing.Size(100, 23);
             this.but_AddParentNode.TabIndex = 3;
@@ -95,7 +106,8 @@
             // 
             // but_DeleteNode
             // 
-            this.but_DeleteNode.Location = new System.Drawing.Point(339, 384);
+            this.but_DeleteNode.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but_DeleteNode.Location = new System.Drawing.Point(6, 118);
             this.but_DeleteNode.Name = "but_DeleteNode";
             this.but_DeleteNode.Size = new System.Drawing.Size(100, 23);
             this.but_DeleteNode.TabIndex = 4;
@@ -107,9 +119,10 @@
             // 
             this.rad_FromTemplate.AutoSize = true;
             this.rad_FromTemplate.Checked = true;
+            this.rad_FromTemplate.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rad_FromTemplate.Location = new System.Drawing.Point(23, 42);
             this.rad_FromTemplate.Name = "rad_FromTemplate";
-            this.rad_FromTemplate.Size = new System.Drawing.Size(109, 17);
+            this.rad_FromTemplate.Size = new System.Drawing.Size(103, 20);
             this.rad_FromTemplate.TabIndex = 5;
             this.rad_FromTemplate.TabStop = true;
             this.rad_FromTemplate.Text = "从模板文件创建";
@@ -119,9 +132,10 @@
             // rad_Manual
             // 
             this.rad_Manual.AutoSize = true;
+            this.rad_Manual.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rad_Manual.Location = new System.Drawing.Point(23, 19);
             this.rad_Manual.Name = "rad_Manual";
-            this.rad_Manual.Size = new System.Drawing.Size(73, 17);
+            this.rad_Manual.Size = new System.Drawing.Size(70, 20);
             this.rad_Manual.TabIndex = 6;
             this.rad_Manual.Text = "手动创建";
             this.rad_Manual.UseVisualStyleBackColor = true;
@@ -145,9 +159,10 @@
             // 
             this.lab_TemplateFile.AutoSize = true;
             this.lab_TemplateFile.Enabled = false;
+            this.lab_TemplateFile.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lab_TemplateFile.Location = new System.Drawing.Point(7, 79);
             this.lab_TemplateFile.Name = "lab_TemplateFile";
-            this.lab_TemplateFile.Size = new System.Drawing.Size(115, 13);
+            this.lab_TemplateFile.Size = new System.Drawing.Size(107, 16);
             this.lab_TemplateFile.TabIndex = 8;
             this.lab_TemplateFile.Text = "请选择一个模板文件";
             // 
@@ -163,6 +178,7 @@
             // 
             // button4
             // 
+            this.button4.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(339, 218);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
@@ -174,23 +190,26 @@
             // lab_ProjectName
             // 
             this.lab_ProjectName.AutoSize = true;
+            this.lab_ProjectName.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lab_ProjectName.Location = new System.Drawing.Point(336, 171);
             this.lab_ProjectName.Name = "lab_ProjectName";
-            this.lab_ProjectName.Size = new System.Drawing.Size(67, 13);
+            this.lab_ProjectName.Size = new System.Drawing.Size(63, 16);
             this.lab_ProjectName.TabIndex = 9;
             this.lab_ProjectName.Text = "项目名称：";
             // 
             // lab_ProjectPath
             // 
             this.lab_ProjectPath.AutoSize = true;
+            this.lab_ProjectPath.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lab_ProjectPath.Location = new System.Drawing.Point(336, 193);
             this.lab_ProjectPath.Name = "lab_ProjectPath";
-            this.lab_ProjectPath.Size = new System.Drawing.Size(67, 13);
+            this.lab_ProjectPath.Size = new System.Drawing.Size(63, 16);
             this.lab_ProjectPath.TabIndex = 10;
             this.lab_ProjectPath.Text = "项目路径：";
             // 
             // but_CreateDirectories
             // 
+            this.but_CreateDirectories.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.but_CreateDirectories.Location = new System.Drawing.Point(467, 217);
             this.but_CreateDirectories.Name = "but_CreateDirectories";
             this.but_CreateDirectories.Size = new System.Drawing.Size(75, 23);
@@ -199,25 +218,42 @@
             this.but_CreateDirectories.UseVisualStyleBackColor = true;
             this.but_CreateDirectories.Click += new System.EventHandler(this.but_CreateDirectories_Click);
             // 
-            // imageList1
+            // lab_Attation
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Floder.png");
+            this.lab_Attation.AutoEllipsis = true;
+            this.lab_Attation.AutoSize = true;
+            this.lab_Attation.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_Attation.Location = new System.Drawing.Point(336, 484);
+            this.lab_Attation.Name = "lab_Attation";
+            this.lab_Attation.Size = new System.Drawing.Size(39, 16);
+            this.lab_Attation.TabIndex = 14;
+            this.lab_Attation.Text = "label1";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.but_AddParentNode);
+            this.groupBox2.Controls.Add(this.but_AddChildNode);
+            this.groupBox2.Controls.Add(this.but_DeleteNode);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(339, 276);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(116, 164);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "节点编辑";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 598);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.lab_Attation);
             this.Controls.Add(this.but_CreateDirectories);
             this.Controls.Add(this.lab_ProjectPath);
             this.Controls.Add(this.lab_ProjectName);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.but_DeleteNode);
-            this.Controls.Add(this.but_AddParentNode);
-            this.Controls.Add(this.but_AddChildNode);
             this.Controls.Add(this.tre_Driectroy);
             this.Controls.Add(this.lab_ToolName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -229,6 +265,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,6 +288,8 @@
         private System.Windows.Forms.Label lab_ProjectPath;
         private System.Windows.Forms.Button but_CreateDirectories;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label lab_Attation;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

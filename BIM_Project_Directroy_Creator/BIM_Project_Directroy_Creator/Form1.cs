@@ -89,7 +89,6 @@ namespace BIM_Project_Directroy_Creator
             else
             {
                 MessageBox.Show("请先删除此节点下的所有子节点", "提示信息", MessageBoxButtons.OK); 
-
             }
         }
 
@@ -113,13 +112,17 @@ namespace BIM_Project_Directroy_Creator
             this.but_AddParentNode.Enabled = false;
             this.but_DeleteNode.Enabled = false;
             this.groupBox1.Width = 250;
+            this.lab_Attation.Text = 
+@"使用方法：尽量选用从模板生成目录方式，详细内容用文本编辑器打开模板文件。
+                   模板文件请使用UTF-8编码方式。
+                   生成目录后，在创建文件夹之前可以在目录节点上鼠标右键单击，编辑该节点。";
         }
 
         private void but_SelectTemplate_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog1 = new OpenFileDialog())
             {
-                openFileDialog1.InitialDirectory = @"d:\C#练习\CreateDirectory\CreateDirectory_2018.12.24\";
+                openFileDialog1.InitialDirectory = @"d:\";
                 openFileDialog1.Filter = "Text File|*.txt";
                 openFileDialog1.RestoreDirectory = true;
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -226,7 +229,7 @@ namespace BIM_Project_Directroy_Creator
 
         private void tre_Driectroy_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            MessageBox.Show(Convert.ToString(e.Node.Index));
+           // MessageBox.Show(Convert.ToString(e.Node.Index));
         }
 
         private void tre_Driectroy_MouseClick(object sender, MouseEventArgs e)
@@ -238,7 +241,7 @@ namespace BIM_Project_Directroy_Creator
         }
 
         private void tre_Driectroy_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
+        {//右键选择节点启用编辑功能
             if(e.Button == MouseButtons.Right)
             {
                 tre_Driectroy.LabelEdit = true;
@@ -247,9 +250,7 @@ namespace BIM_Project_Directroy_Creator
         }
 
         private void but_CreateDirectories_Click(object sender, EventArgs e)
-        {
-            TreeNode Selected_Node = new TreeNode();
-
+        {//创建目录
             foreach(TreeNode tn in tre_Driectroy.Nodes)
             {
                 Get_Path(tn);
