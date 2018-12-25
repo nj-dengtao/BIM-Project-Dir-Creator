@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lab_ToolName = new System.Windows.Forms.Label();
             this.tre_Driectroy = new System.Windows.Forms.TreeView();
             this.but_AddChildNode = new System.Windows.Forms.Button();
@@ -39,6 +41,10 @@
             this.lab_TemplateFile = new System.Windows.Forms.Label();
             this.but_SelectTemplate = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.lab_ProjectName = new System.Windows.Forms.Label();
+            this.lab_ProjectPath = new System.Windows.Forms.Label();
+            this.but_CreateDirectories = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,8 +61,12 @@
             // tre_Driectroy
             // 
             this.tre_Driectroy.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tre_Driectroy.HideSelection = false;
+            this.tre_Driectroy.ImageIndex = 0;
+            this.tre_Driectroy.ImageList = this.imageList1;
             this.tre_Driectroy.Location = new System.Drawing.Point(12, 57);
             this.tre_Driectroy.Name = "tre_Driectroy";
+            this.tre_Driectroy.SelectedImageIndex = 0;
             this.tre_Driectroy.Size = new System.Drawing.Size(311, 529);
             this.tre_Driectroy.TabIndex = 1;
             this.tre_Driectroy.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tre_Driectroy_NodeMouseClick);
@@ -69,7 +79,7 @@
             this.but_AddChildNode.Name = "but_AddChildNode";
             this.but_AddChildNode.Size = new System.Drawing.Size(100, 23);
             this.but_AddChildNode.TabIndex = 2;
-            this.but_AddChildNode.Text = "Add Child Node";
+            this.but_AddChildNode.Text = "添加子节点";
             this.but_AddChildNode.UseVisualStyleBackColor = true;
             this.but_AddChildNode.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -79,7 +89,7 @@
             this.but_AddParentNode.Name = "but_AddParentNode";
             this.but_AddParentNode.Size = new System.Drawing.Size(100, 23);
             this.but_AddParentNode.TabIndex = 3;
-            this.but_AddParentNode.Text = "Add Parent Node";
+            this.but_AddParentNode.Text = "添加平级节点";
             this.but_AddParentNode.UseVisualStyleBackColor = true;
             this.but_AddParentNode.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -89,7 +99,7 @@
             this.but_DeleteNode.Name = "but_DeleteNode";
             this.but_DeleteNode.Size = new System.Drawing.Size(100, 23);
             this.but_DeleteNode.TabIndex = 4;
-            this.but_DeleteNode.Text = "Delete Node";
+            this.but_DeleteNode.Text = "删除节点";
             this.but_DeleteNode.UseVisualStyleBackColor = true;
             this.but_DeleteNode.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -153,7 +163,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(339, 176);
+            this.button4.Location = new System.Drawing.Point(339, 218);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
@@ -161,11 +171,48 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // lab_ProjectName
+            // 
+            this.lab_ProjectName.AutoSize = true;
+            this.lab_ProjectName.Location = new System.Drawing.Point(336, 171);
+            this.lab_ProjectName.Name = "lab_ProjectName";
+            this.lab_ProjectName.Size = new System.Drawing.Size(67, 13);
+            this.lab_ProjectName.TabIndex = 9;
+            this.lab_ProjectName.Text = "项目名称：";
+            // 
+            // lab_ProjectPath
+            // 
+            this.lab_ProjectPath.AutoSize = true;
+            this.lab_ProjectPath.Location = new System.Drawing.Point(336, 193);
+            this.lab_ProjectPath.Name = "lab_ProjectPath";
+            this.lab_ProjectPath.Size = new System.Drawing.Size(67, 13);
+            this.lab_ProjectPath.TabIndex = 10;
+            this.lab_ProjectPath.Text = "项目路径：";
+            // 
+            // but_CreateDirectories
+            // 
+            this.but_CreateDirectories.Location = new System.Drawing.Point(467, 217);
+            this.but_CreateDirectories.Name = "but_CreateDirectories";
+            this.but_CreateDirectories.Size = new System.Drawing.Size(75, 23);
+            this.but_CreateDirectories.TabIndex = 13;
+            this.but_CreateDirectories.Text = "创建目录结构";
+            this.but_CreateDirectories.UseVisualStyleBackColor = true;
+            this.but_CreateDirectories.Click += new System.EventHandler(this.but_CreateDirectories_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Floder.png");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 598);
+            this.Controls.Add(this.but_CreateDirectories);
+            this.Controls.Add(this.lab_ProjectPath);
+            this.Controls.Add(this.lab_ProjectName);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.but_DeleteNode);
@@ -173,10 +220,12 @@
             this.Controls.Add(this.but_AddChildNode);
             this.Controls.Add(this.tre_Driectroy);
             this.Controls.Add(this.lab_ToolName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "CCIEE-BIM Project Directory Creator";
+            this.Text = "项目名称：";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -198,6 +247,10 @@
         private System.Windows.Forms.Button but_SelectTemplate;
         private System.Windows.Forms.Label lab_TemplateFile;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label lab_ProjectName;
+        private System.Windows.Forms.Label lab_ProjectPath;
+        private System.Windows.Forms.Button but_CreateDirectories;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
