@@ -142,8 +142,8 @@ TEL: 025-56663428";
                         StreamReader sr = new StreamReader(lab_TemplateFile.Text, Encoding.UTF8); //打开模板文件
                         ProjectName = sr.ReadLine().Trim(); //读取模板文件中第一行，项目名称
                         ProjectPath = sr.ReadLine().Trim(); //读取模板文件中第二行，项目存储路径
-                        this.lab_ProjectName.Text += ProjectName;
-                        this.lab_ProjectPath.Text += ProjectPath;
+                        this.lab_ProjectName.Text = ProjectName;
+                        this.lab_ProjectPath.Text = ProjectPath;
                         this.but_ChangePath.Enabled = true;
                         
 
@@ -270,9 +270,14 @@ TEL: 025-56663428";
                 {
                     if( !Directory.Exists(item))
                     {
-                        Directory.CreateDirectory(this.lab_ProjectPath.Text + @"\"  + item);
+                        Directory.CreateDirectory((this.lab_ProjectPath.Text + @"\"  + item).Replace(@"\\", @"\"));
                     }
                 }
+                
+            }
+            if(MessageBox.Show("目录创建完成。\n\r是否需要打开此文件夹？"+ (this.lab_ProjectPath.Text + @"\" + this.lab_ProjectName.Text).Replace(@"\\", @"\"), "提示", MessageBoxButtons.YesNo) == DialogResult.Yes   )
+            {
+                System.Diagnostics.Process.Start("explorer.exe", (this.lab_ProjectPath.Text + @"\" + this.lab_ProjectName.Text).Replace(@"\\", @"\"));
             }
         }
 
@@ -334,16 +339,48 @@ TEL: 025-56663428";
 
         private void but_ManualCreateRoot_Click(object sender, EventArgs e)
         {
-            if( this.txt_ProjectName.Text.Trim().Length > 0  )
+            try
             {
-                this.tre_Driectroy.Nodes[0].Text = this.txt_ProjectName.Text.Trim();
+                if (this.txt_ProjectName.Text.Trim().Length > 0) //判断项目根节点长度，0长度不创建
+                {
+                    if (this.tre_Driectroy.Nodes.Count > 0) //判断当前目录结构是否存在，
+                    {
+                        this.tre_Driectroy.Nodes[0].Text = this.txt_ProjectName.Text.Trim(); //如果有目录存在，将根节点名称替换
+                    }
+                    else
+                    {//不存在目录结构，
+                        TreeNode tmp = new TreeNode(this.txt_ProjectName.Text.Trim());
+                        tre_Driectroy.Nodes.Add(tmp);
+                    }
+                    this.but_ManualCreateRoot.Enabled = false;
+                    this.txt_ProjectName.Enabled = false;
+                    this.but_AddChildNode.Enabled = true;
+                    this.but_AddParentNode.Enabled = true;
+                    this.but_DeleteNode.Enabled = true;
+                    this.button4.Enabled = false;
+                    this.but_CreateDirectories.Enabled = true;
+                    //this.ProjectName = string.Empty;
+                    //this.ProjectPath = string.Empty;
+                    this.ProjectName = this.tre_Driectroy.Nodes[0].Text.Trim();
+                    this.ProjectPath = Directory.GetCurrentDirectory();
+                    this.lab_ProjectName.Text = ProjectName;
+                    this.lab_ProjectPath.Text = ProjectPath;
+                    this.but_ChangePath.Enabled = true;
+                    this.chk_UseCurrentPath.Enabled = true;
+
+                }
+                else
+                {
+                    MessageBox.Show("请检查项目名称", "检查", MessageBoxButtons.OK);
+                    this.txt_ProjectName.Focus();
+                }
+                
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("请检查项目名称", "检查", MessageBoxButtons.OK);
-                this.txt_ProjectName.Focus();
+
             }
-            this.but_ManualCreateRoot.Enabled = false;
+           
             
         }
 
@@ -362,12 +399,10 @@ TEL: 025-56663428";
         private void but_ChangePath_Click(object sender, EventArgs e)
         {
             this.chk_UseCurrentPath.Checked = false;
-            string ChangedPath = string.Empty;
             FolderBrowserDialog FolderPath = new FolderBrowserDialog();
             if(FolderPath.ShowDialog() == DialogResult.OK)
             {
-                ChangedPath = FolderPath.SelectedPath;
-                lab_ProjectPath.Text = ChangedPath;
+                lab_ProjectPath.Text = FolderPath.SelectedPath;
             }
         }
     }

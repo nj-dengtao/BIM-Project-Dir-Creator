@@ -52,6 +52,8 @@
             this.chk_UseCurrentPath = new System.Windows.Forms.CheckBox();
             this.but_ChangePath = new System.Windows.Forms.Button();
             this.lab_CR = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -217,21 +219,20 @@
             // 
             this.lab_ProjectName.AutoSize = true;
             this.lab_ProjectName.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_ProjectName.Location = new System.Drawing.Point(336, 181);
+            this.lab_ProjectName.Location = new System.Drawing.Point(392, 186);
             this.lab_ProjectName.Name = "lab_ProjectName";
-            this.lab_ProjectName.Size = new System.Drawing.Size(63, 16);
+            this.lab_ProjectName.Size = new System.Drawing.Size(0, 16);
             this.lab_ProjectName.TabIndex = 9;
-            this.lab_ProjectName.Text = "项目名称：";
             // 
             // lab_ProjectPath
             // 
             this.lab_ProjectPath.AutoSize = true;
             this.lab_ProjectPath.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_ProjectPath.Location = new System.Drawing.Point(336, 203);
+            this.lab_ProjectPath.Location = new System.Drawing.Point(392, 208);
             this.lab_ProjectPath.Name = "lab_ProjectPath";
-            this.lab_ProjectPath.Size = new System.Drawing.Size(63, 16);
+            this.lab_ProjectPath.Size = new System.Drawing.Size(0, 16);
             this.lab_ProjectPath.TabIndex = 10;
-            this.lab_ProjectPath.Text = "项目路径：";
+            this.lab_ProjectPath.Tag = "";
             // 
             // but_CreateDirectories
             // 
@@ -302,11 +303,34 @@
             this.lab_CR.TabIndex = 18;
             this.lab_CR.Text = "label1";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(329, 208);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 16);
+            this.label1.TabIndex = 20;
+            this.label1.Tag = "";
+            this.label1.Text = "项目路径：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(329, 186);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "项目名称：";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 598);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lab_CR);
             this.Controls.Add(this.but_ChangePath);
             this.Controls.Add(this.chk_UseCurrentPath);
@@ -358,6 +382,8 @@
         private System.Windows.Forms.CheckBox chk_UseCurrentPath;
         private System.Windows.Forms.Button but_ChangePath;
         private System.Windows.Forms.Label lab_CR;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
