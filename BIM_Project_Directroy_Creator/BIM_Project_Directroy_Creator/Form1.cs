@@ -107,11 +107,13 @@ namespace BIM_Project_Directroy_Creator
         private void Form1_Load(object sender, EventArgs e)
         {
             this.button4.Enabled = false;
+            this.but_SelectTemplate.Enabled = false;
             this.but_CreateDirectories.Enabled = false;
             this.but_AddChildNode.Enabled = false;
             this.but_AddParentNode.Enabled = false;
             this.but_DeleteNode.Enabled = false;
-            this.groupBox1.Width = 250;
+            this.txt_ProjectName.Enabled = false;
+            this.but_ManualCreateRoot.Enabled = false;
             this.lab_Attation.Text = 
 @"使用方法：尽量选用从模板生成目录方式，详细内容用文本编辑器打开模板文件。
                    模板文件请使用UTF-8编码方式。
@@ -122,13 +124,12 @@ namespace BIM_Project_Directroy_Creator
         {
             using (OpenFileDialog openFileDialog1 = new OpenFileDialog())
             {
-                openFileDialog1.InitialDirectory = @"d:\";
+                openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
                 openFileDialog1.Filter = "Text File|*.txt";
                 openFileDialog1.RestoreDirectory = true;
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     lab_TemplateFile.Text = openFileDialog1.FileName;
-                    this.groupBox1.Width = this.lab_TemplateFile.Width + 50;
                     this.button4.Enabled = true;
                     try
                     {
@@ -214,6 +215,7 @@ namespace BIM_Project_Directroy_Creator
                 }
                
                 this.tre_Driectroy.ExpandAll();
+                this.tre_Driectroy.SelectedNode = this.tre_Driectroy.Nodes[0];
                 this.button4.Enabled = false;
                 this.but_CreateDirectories.Enabled = true;
                 this.but_AddChildNode.Enabled = true;
@@ -262,6 +264,77 @@ namespace BIM_Project_Directroy_Creator
                     }
                 }
             }
+        }
+
+        private void rad_Manual_Click(object sender, EventArgs e)
+        {
+           
+            try
+            {
+                if( this.tre_Driectroy.Nodes[0].GetNodeCount(false) > 0  )
+                {
+                    if( MessageBox.Show("目录结构已经存在，是否清除该目录？ \n 清除后将不可恢复！", "重要提示", MessageBoxButtons.YesNo) == DialogResult.Yes  )
+                    {
+                        this.tre_Driectroy.Nodes.Clear();
+                        this.txt_ProjectName.Enabled = true;
+                        this.txt_ProjectName.Text = "请输入项目名称";
+                    }
+                    else
+                    {
+                        if(MessageBox.Show("是否保留当前目录根节点？", "重要提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            this.txt_ProjectName.Enabled = false;
+                            this.txt_ProjectName.Text = this.tre_Driectroy.Nodes[0].Text;
+                            this.but_ManualCreateRoot.Enabled = false;
+                            this.but_AddChildNode.Enabled = true;
+                            this.but_AddParentNode.Enabled = true;
+                            this.but_DeleteNode.Enabled = true;
+                        }
+                        else
+                        {
+                            this.txt_ProjectName.Enabled = true;
+                            this.txt_ProjectName.Text = this.tre_Driectroy.Nodes[0].Text;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void txt_ProjectName_TextChanged(object sender, EventArgs e)
+        {
+            this.but_ManualCreateRoot.Enabled = true;
+        }
+
+        private void rad_Manual_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.rad_Manual.Checked == true)
+            {
+                this.txt_ProjectName.Enabled = true;
+                this.but_ManualCreateRoot.Enabled = true;
+            }
+            else
+            {
+                this.txt_ProjectName.Enabled = false;
+                this.but_ManualCreateRoot.Enabled = false;
+            }
+        }
+
+        private void but_ManualCreateRoot_Click(object sender, EventArgs e)
+        {
+            if( this.txt_ProjectName.Text.Trim().Length > 0  )
+            {
+                this.tre_Driectroy.Nodes[0].Text = this.txt_ProjectName.Text.Trim();
+            }
+            else
+            {
+                MessageBox.Show("请检查项目名称", "检查", MessageBoxButtons.OK);
+                this.txt_ProjectName.Focus();
+            }
+            this.but_ManualCreateRoot.Enabled = false;
+            
         }
     }
 }
