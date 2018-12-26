@@ -39,6 +39,8 @@
             this.rad_FromTemplate = new System.Windows.Forms.RadioButton();
             this.rad_Manual = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_ProjectName = new System.Windows.Forms.TextBox();
+            this.but_ManualCreateRoot = new System.Windows.Forms.Button();
             this.lab_TemplateFile = new System.Windows.Forms.Label();
             this.but_SelectTemplate = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -47,8 +49,9 @@
             this.but_CreateDirectories = new System.Windows.Forms.Button();
             this.lab_Attation = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.but_ManualCreateRoot = new System.Windows.Forms.Button();
-            this.txt_ProjectName = new System.Windows.Forms.TextBox();
+            this.chk_UseCurrentPath = new System.Windows.Forms.CheckBox();
+            this.but_ChangePath = new System.Windows.Forms.Button();
+            this.lab_CR = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -159,6 +162,25 @@
             this.groupBox1.Text = "创建模式";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // txt_ProjectName
+            // 
+            this.txt_ProjectName.Location = new System.Drawing.Point(138, 19);
+            this.txt_ProjectName.Name = "txt_ProjectName";
+            this.txt_ProjectName.Size = new System.Drawing.Size(194, 20);
+            this.txt_ProjectName.TabIndex = 10;
+            this.txt_ProjectName.TextChanged += new System.EventHandler(this.txt_ProjectName_TextChanged);
+            // 
+            // but_ManualCreateRoot
+            // 
+            this.but_ManualCreateRoot.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but_ManualCreateRoot.Location = new System.Drawing.Point(347, 18);
+            this.but_ManualCreateRoot.Name = "but_ManualCreateRoot";
+            this.but_ManualCreateRoot.Size = new System.Drawing.Size(103, 23);
+            this.but_ManualCreateRoot.TabIndex = 9;
+            this.but_ManualCreateRoot.Text = "建立项目根节点";
+            this.but_ManualCreateRoot.UseVisualStyleBackColor = true;
+            this.but_ManualCreateRoot.Click += new System.EventHandler(this.but_ManualCreateRoot_Click);
+            // 
             // lab_TemplateFile
             // 
             this.lab_TemplateFile.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -182,10 +204,10 @@
             // 
             // button4
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(339, 228);
+            this.button4.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.Location = new System.Drawing.Point(556, 276);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(150, 40);
             this.button4.TabIndex = 8;
             this.button4.Text = "创建项目";
             this.button4.UseVisualStyleBackColor = true;
@@ -213,10 +235,10 @@
             // 
             // but_CreateDirectories
             // 
-            this.but_CreateDirectories.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_CreateDirectories.Location = new System.Drawing.Point(467, 227);
+            this.but_CreateDirectories.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.but_CreateDirectories.Location = new System.Drawing.Point(556, 340);
             this.but_CreateDirectories.Name = "but_CreateDirectories";
-            this.but_CreateDirectories.Size = new System.Drawing.Size(85, 23);
+            this.but_CreateDirectories.Size = new System.Drawing.Size(150, 40);
             this.but_CreateDirectories.TabIndex = 13;
             this.but_CreateDirectories.Text = "创建目录结构";
             this.but_CreateDirectories.UseVisualStyleBackColor = true;
@@ -227,7 +249,7 @@
             this.lab_Attation.AutoEllipsis = true;
             this.lab_Attation.AutoSize = true;
             this.lab_Attation.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lab_Attation.Location = new System.Drawing.Point(336, 484);
+            this.lab_Attation.Location = new System.Drawing.Point(341, 462);
             this.lab_Attation.Name = "lab_Attation";
             this.lab_Attation.Size = new System.Drawing.Size(39, 16);
             this.lab_Attation.TabIndex = 14;
@@ -246,30 +268,48 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "节点编辑";
             // 
-            // but_ManualCreateRoot
+            // chk_UseCurrentPath
             // 
-            this.but_ManualCreateRoot.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.but_ManualCreateRoot.Location = new System.Drawing.Point(347, 18);
-            this.but_ManualCreateRoot.Name = "but_ManualCreateRoot";
-            this.but_ManualCreateRoot.Size = new System.Drawing.Size(103, 23);
-            this.but_ManualCreateRoot.TabIndex = 9;
-            this.but_ManualCreateRoot.Text = "建立项目根节点";
-            this.but_ManualCreateRoot.UseVisualStyleBackColor = true;
-            this.but_ManualCreateRoot.Click += new System.EventHandler(this.but_ManualCreateRoot_Click);
+            this.chk_UseCurrentPath.AutoSize = true;
+            this.chk_UseCurrentPath.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_UseCurrentPath.Location = new System.Drawing.Point(613, 386);
+            this.chk_UseCurrentPath.Name = "chk_UseCurrentPath";
+            this.chk_UseCurrentPath.Size = new System.Drawing.Size(93, 20);
+            this.chk_UseCurrentPath.TabIndex = 16;
+            this.chk_UseCurrentPath.Text = "使用当前路径";
+            this.chk_UseCurrentPath.UseVisualStyleBackColor = true;
+            this.chk_UseCurrentPath.CheckStateChanged += new System.EventHandler(this.chk_UseCurrentPath_CheckStateChanged);
             // 
-            // txt_ProjectName
+            // but_ChangePath
             // 
-            this.txt_ProjectName.Location = new System.Drawing.Point(138, 19);
-            this.txt_ProjectName.Name = "txt_ProjectName";
-            this.txt_ProjectName.Size = new System.Drawing.Size(194, 20);
-            this.txt_ProjectName.TabIndex = 10;
-            this.txt_ProjectName.TextChanged += new System.EventHandler(this.txt_ProjectName_TextChanged);
+            this.but_ChangePath.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but_ChangePath.Location = new System.Drawing.Point(339, 227);
+            this.but_ChangePath.Name = "but_ChangePath";
+            this.but_ChangePath.Size = new System.Drawing.Size(75, 23);
+            this.but_ChangePath.TabIndex = 17;
+            this.but_ChangePath.Text = "修改路径";
+            this.but_ChangePath.UseVisualStyleBackColor = true;
+            this.but_ChangePath.Click += new System.EventHandler(this.but_ChangePath_Click);
+            // 
+            // lab_CR
+            // 
+            this.lab_CR.AutoSize = true;
+            this.lab_CR.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab_CR.ForeColor = System.Drawing.Color.Blue;
+            this.lab_CR.Location = new System.Drawing.Point(584, 538);
+            this.lab_CR.Name = "lab_CR";
+            this.lab_CR.Size = new System.Drawing.Size(39, 16);
+            this.lab_CR.TabIndex = 18;
+            this.lab_CR.Text = "label1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 598);
+            this.Controls.Add(this.lab_CR);
+            this.Controls.Add(this.but_ChangePath);
+            this.Controls.Add(this.chk_UseCurrentPath);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lab_Attation);
             this.Controls.Add(this.but_CreateDirectories);
@@ -315,6 +355,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txt_ProjectName;
         private System.Windows.Forms.Button but_ManualCreateRoot;
+        private System.Windows.Forms.CheckBox chk_UseCurrentPath;
+        private System.Windows.Forms.Button but_ChangePath;
+        private System.Windows.Forms.Label lab_CR;
     }
 }
 

@@ -19,6 +19,9 @@ namespace BIM_Project_Directroy_Creator
         private List<string> L1_Directroies = new List<string>();
         private List<string> L2_Directories = new List<string>();
         private List<string> Directories = new List<string>();
+        private string copyright = @"中建安装集团有限公司
+工程研究院-BIM应用研发中心
+TEL: 025-56663428";
 
         public Form1()
         {
@@ -27,7 +30,7 @@ namespace BIM_Project_Directroy_Creator
 
         private void Get_Path(TreeNode tn) //递归遍历TreeView
         {
-            Directories.Add(ProjectPath +@"\" +  tn.FullPath); //将目录结构写入列表
+            Directories.Add( tn.FullPath); //将目录结构写入列表
             foreach(TreeNode tnSub in tn.Nodes)
             {
                 Get_Path(tnSub);
@@ -114,10 +117,13 @@ namespace BIM_Project_Directroy_Creator
             this.but_DeleteNode.Enabled = false;
             this.txt_ProjectName.Enabled = false;
             this.but_ManualCreateRoot.Enabled = false;
+            this.but_ChangePath.Enabled = false;
+            this.chk_UseCurrentPath.Enabled = false;
             this.lab_Attation.Text = 
 @"使用方法：尽量选用从模板生成目录方式，详细内容用文本编辑器打开模板文件。
                    模板文件请使用UTF-8编码方式。
                    生成目录后，在创建文件夹之前可以在目录节点上鼠标右键单击，编辑该节点。";
+            this.lab_CR.Text = this.copyright;
         }
 
         private void but_SelectTemplate_Click(object sender, EventArgs e)
@@ -138,6 +144,8 @@ namespace BIM_Project_Directroy_Creator
                         ProjectPath = sr.ReadLine().Trim(); //读取模板文件中第二行，项目存储路径
                         this.lab_ProjectName.Text += ProjectName;
                         this.lab_ProjectPath.Text += ProjectPath;
+                        this.but_ChangePath.Enabled = true;
+                        
 
                         //读取模板文件中的目录信息
                         string line = "";
@@ -221,7 +229,8 @@ namespace BIM_Project_Directroy_Creator
                 this.but_AddChildNode.Enabled = true;
                 this.but_AddParentNode.Enabled = true;
                 this.but_DeleteNode.Enabled = true;
-                
+                this.chk_UseCurrentPath.Enabled = true;
+
             }
             catch (Exception)
             {
@@ -256,11 +265,12 @@ namespace BIM_Project_Directroy_Creator
             foreach(TreeNode tn in tre_Driectroy.Nodes)
             {
                 Get_Path(tn);
+               
                 foreach (var item in Directories)
                 {
                     if( !Directory.Exists(item))
                     {
-                        Directory.CreateDirectory(item);
+                        Directory.CreateDirectory(this.lab_ProjectPath.Text + @"\"  + item);
                     }
                 }
             }
@@ -335,6 +345,30 @@ namespace BIM_Project_Directroy_Creator
             }
             this.but_ManualCreateRoot.Enabled = false;
             
+        }
+
+        private void chk_UseCurrentPath_CheckStateChanged(object sender, EventArgs e)
+        {
+            if( this.chk_UseCurrentPath.Checked  )
+            {
+                this.lab_ProjectPath.Text = Directory.GetCurrentDirectory();
+            }
+            else
+            {
+                this.lab_ProjectPath.Text = ProjectPath;
+            }
+        }
+
+        private void but_ChangePath_Click(object sender, EventArgs e)
+        {
+            this.chk_UseCurrentPath.Checked = false;
+            string ChangedPath = string.Empty;
+            FolderBrowserDialog FolderPath = new FolderBrowserDialog();
+            if(FolderPath.ShowDialog() == DialogResult.OK)
+            {
+                ChangedPath = FolderPath.SelectedPath;
+                lab_ProjectPath.Text = ChangedPath;
+            }
         }
     }
 }
