@@ -23,9 +23,52 @@ namespace BIM_Project_Directroy_Creator
 工程研究院-BIM应用研发中心
 TEL: 025-56663428";
 
+        //预置目录信息
+        private string pn = "中建安装测试项目";
+        private string pp = @"D:\";
+        private List<string> L1D = new List<string>() { "01-设计图纸", "02-BIM实施方案", "03-REVIT", "04-图纸处理", "05-项目资料", "06-深化出图", "07-汇报资料", "08-上报图纸意见回复", "09-模型渲染", "10-过程影像", "11-其他材料" };
+        private List<string> L2D = new List<string>() { "01-001-原版图纸", "01-002-变更图纸" , "03-001-建筑结构","03-002-机电", "03-003-族", "03-004-样板文件", "03-005-NavisWorks" ,"03-006-3DMax","03-007-Fuzor",
+        "03-008-Lumion","03-009-3DMax","03-010-SketchUp","03-011-Rhino","03-012-其它","04-001-建筑","04-002-结构","04-003-给排水","04-004-暖通","04-005-电气","05-001-图纸答疑","05-002-技术交底",
+        "06-001-Revit导出","06-002-建筑底图","06-003-给排水","06-004-暖通", "06-005-电气", "09-001-图片渲染","09-002-视频渲染","10-001-现场实施影像","10-002-汇报影像","10-003-技术交底影像","11-001-其他材料1","11-002-其他材料2",
+        "02-001-test1","02-002-test2"};
+
+
+
         public Form1()
         {
             InitializeComponent();  
+        }
+        private bool Check_Dir_Stru() //检查目录列表是否为空
+        {
+            if(this.tre_Driectroy.Nodes.Count >0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void Switch_NodeEdit(string on_off)
+        {
+            bool turn_on_off = false;
+            switch (on_off)
+            {
+                case "on":
+                    turn_on_off = true;
+                    break;
+                case "off":
+                    turn_on_off = false;
+                    break;
+
+                default:
+                    break;
+            }
+            this.but_AddChildNode.Enabled = turn_on_off;
+            this.but_AddParentNode.Enabled = turn_on_off;
+            this.but_DeleteNode.Enabled = turn_on_off;
+
         }
 
         private void Get_Path(TreeNode tn) //递归遍历TreeView
@@ -404,6 +447,31 @@ TEL: 025-56663428";
             {
                 lab_ProjectPath.Text = FolderPath.SelectedPath;
             }
+        }
+
+        private void but_Auto_Click(object sender, EventArgs e)
+        {
+            if( this.Check_Dir_Stru() )
+            {
+                if( (MessageBox.Show("目录结构存在，是否要清除？","重要提示",MessageBoxButtons.OKCancel)) ==DialogResult.OK)
+                {
+                    try
+                    {
+                        this.tre_Driectroy.Nodes.Clear();
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
+            this.lab_ProjectName.Text = this.ProjectName = this.pn;
+            this.lab_ProjectPath.Text = this.pp;
+            this.L1_Directroies = this.L1D;
+            this.L2_Directories = this.L2D;
+            this.but_ChangePath.Enabled = true;
+            this.button4.Enabled = true;
+            this.but_CreateDirectories.Enabled = false;
+            this.Switch_NodeEdit("off");
         }
     }
 }

@@ -54,6 +54,7 @@
             this.lab_CR = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.but_Auto = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -149,6 +150,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.but_Auto);
             this.groupBox1.Controls.Add(this.txt_ProjectName);
             this.groupBox1.Controls.Add(this.but_ManualCreateRoot);
             this.groupBox1.Controls.Add(this.lab_TemplateFile);
@@ -324,6 +326,17 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "项目名称：";
             // 
+            // but_Auto
+            // 
+            this.but_Auto.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but_Auto.Location = new System.Drawing.Point(193, 49);
+            this.but_Auto.Name = "but_Auto";
+            this.but_Auto.Size = new System.Drawing.Size(101, 23);
+            this.but_Auto.TabIndex = 11;
+            this.but_Auto.Text = "自动创建项目";
+            this.but_Auto.UseVisualStyleBackColor = true;
+            this.but_Auto.Click += new System.EventHandler(this.but_Auto_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,6 +397,7 @@
         private System.Windows.Forms.Label lab_CR;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button but_Auto;
     }
 }
 
